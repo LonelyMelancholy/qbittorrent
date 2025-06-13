@@ -1,10 +1,10 @@
-#!
-qbittorrent
-sudo chown -R qbittorrent:qbittorrent /mnt/disk1/
+#!bin/bash
 
-sudo apt update && sudo apt install qbittorrent-nox
-sudo useradd -r -m -d /home/qbittorrent -s /bin/false qbittorrent
-sudo nano /etc/systemd/system/qbittorrent.service
+chown -R qbittorrent:qbittorrent /mnt/disk1/
+
+apt update && sudo apt install qbittorrent-nox
+useradd -r -m -d /home/qbittorrent -s /bin/false qbittorrent
+nano /etc/systemd/system/qbittorrent.service
 
 [Unit]
 Description=qBittorrent-nox
