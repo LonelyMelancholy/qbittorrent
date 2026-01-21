@@ -1,11 +1,11 @@
-#!
-qbittorrent
-sudo chown -R qbittorrent:qbittorrent /mnt/disk1/
+#!/bin/bash
 
-sudo apt update && sudo apt install qbittorrent-nox
-sudo useradd -r -m -d /home/qbittorrent -s /bin/false qbittorrent
-sudo nano /etc/systemd/system/qbittorrent.service
+apt-get update
+apt-get install qbittorrent-nox
 
+useradd -r -M -d /nonexistent -s /usr/sbin/nologin qbittorrent
+
+tee /etc/systemd/system/qbittorrent.service > /dev/null <EOF
 [Unit]
 Description=qBittorrent-nox
 After=network.target
@@ -18,10 +18,13 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+EOF
 
-sudo systemctl daemon-reload
-sudo systemctl enable --now qbittorrent
+systemctl daemon-reload
+systemctl enable --now qbittorrent
 
 ~/.config/qBittorrent/qBittorrent.conf
 
 systemctl restart qbittorrent.service
+
+sudo chown -R qbittorrent:qbittorrent /mnt/disk1/
